@@ -109,7 +109,7 @@ cuyo representante de ventas tenga el código de empleado 11 o 30.
 SELECT nombre_cliente
 FROM cliente
 WHERE ciudad = 'Madrid' AND codigo_empleado_rep_ventas IN (11, 30);
----------------------------------------------------------------
+---Consultas multitabla (Composición interna)
 
 1
 -- Usando (SQL1):
@@ -213,7 +213,7 @@ INNER JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
 INNER JOIN detalle_pedido dp ON p.codigo_pedido = dp.codigo_pedido
 INNER JOIN producto pr ON dp.codigo_producto = pr.codigo_producto;
 
--------------------------------------------------------------------------
+----Consultas multitabla (Composición externa)
 
 1
 SELECT c.nombre
