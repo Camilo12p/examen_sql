@@ -33,6 +33,27 @@ CREATE TABLE oficina(
 );
 
 
+DROP TABLE IF EXISTS empleado;
+
+CREATE TABLE empleado(
+    codigo_empleado INT(11),
+    nombre VARCHAR(50),
+    apellido1 VARCHAR(50),
+    apellido2 VARCHAR(50),
+    extension VARCHAR(10),
+
+    email VARCHAR(100),
+    codigo_oficina VARCHAR(10),
+    codigo_jefe INT(11),
+    puesto VARCHAR(50),
+
+    
+    CONSTRAINT PK_id_empleado PRIMARY KEY (codigo_empleado),
+    CONSTRAINT FK_codigoOficina_empleado FOREIGN KEY (codigo_oficina) REFERENCES oficina (codigo_oficina),
+    CONSTRAINT FK_codigoJefe_empleado FOREIGN KEY (codigo_jefe) REFERENCES empleado (codigo_empleado)
+);
+
+
 DROP TABLE IF EXISTS cliente;
 
 CREATE TABLE cliente(
@@ -124,24 +145,5 @@ CREATE TABLE detalle_pedido(
 
 
 
-DROP TABLE IF EXISTS empleado;
-
-CREATE TABLE empleado(
-    codigo_empleado INT(11),
-    nombre VARCHAR(50),
-    apellido1 VARCHAR(50),
-    apellido2 VARCHAR(50),
-    extension VARCHAR(10),
-
-    email VARCHAR(100),
-    codigo_oficina VARCHAR(10),
-    codigo_jefe INT(11),
-    puesto VARCHAR(50),
-
-    
-    CONSTRAINT PK_id_empleado PRIMARY KEY (codigo_empleado),
-    CONSTRAINT FK_codigoOficina_empleado FOREIGN KEY (codigo_oficina) REFERENCES oficina (codigo_oficina),
-    CONSTRAINT FK_codigoJefe_empleado FOREIGN KEY (codigo_jefe) REFERENCES empleado (codigo_empleado)
-);
 
 
