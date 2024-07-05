@@ -445,6 +445,39 @@ CALL insert_cliente(
     2000000
 );
 
+
+CALL insert_cliente(
+    3,
+    "daniel",
+    "jose",
+    "12324324",
+    "c123de",
+    "Carrera 12 calle 11",
+    "Carrera 32d calle 13",
+    "Sao paulo",
+    "Mundial",
+    "Brasil",
+    "111111",
+    "123243",
+    2000000
+);
+
+
+CALL insert_cliente(
+    4,
+    "daniel",
+    "jose",
+    "12324324",
+    "c123de",
+    "Carrera 12 calle 11",
+    "Carrera 32d calle 13",
+    "Madrid",
+    "Mundial",
+    "Brasil",
+    "111111",
+    "123243",
+    3000000
+);
 --------------------------------------
 
 CALL insert_pago(
@@ -462,6 +495,15 @@ CALL insert_pago(
     "2024-01-21",
     20000
 );
+
+CALL insert_pago(
+    "3",
+    1,
+    "Efectivo",
+    "2019-01-21",
+    20000
+);
+
 
 
 ------------------------------------------
@@ -583,4 +625,57 @@ CALL insert_empleado(
 );
 
 
+
+
+
+-- CONSULTAS
+SELECT COUNT(e.codigo_empleado) as "Cantidad de empleados" from empleado e;
+
+------------------------------------
+
+ SELECT COUNT(c.codigo_cliente), c.pais AS "empleado por pais" FROM cliente c GROUP BY c.pais;
+
+
+------------------------------------
+
+SELECT AVG(p.total) AS pago_promedio FROM pago p WHERE p.fecha_de_pago LIKE "2019%";
+
+---------------------------
+
+SELECT COUNT(p.codigo_pedido), p.estado as Cantidad_de_pedidos FROM pedido p GROUP BY p.estado 
+ORDER BY COUNT(p.codigo_pedido) DESC;
+
+
+--------------------------------
+
+
+SELECT MAX(p.precio_venta) AS precio_maximo, MIN(p.precio_venta) AS precioMinimo FROM producto p ;
+
+--------------------------------
+
+SELECT COUNT(c.codigo_cliente) FROM cliente c WHERE c.ciudad ="Madrid";
+
+
+--------------------------------
+
+SELECT COUNT(c.codigo_cliente),c.ciudad FROM cliente c 
+GROUP BY (SELECT COUNT(c2.codigo_cliente) FROM cliente c2)
+WHERE c.ciudad LIKE "M%";
+
+
+
+
+------------------------------
+
+
+SELECT e.nombre, COUNT(c.codigo_cliente) FROM empleado e
+JOIN cliente c ON c.codigo_empleado_rep_ventas = e.codigo_empleado
+GROUP BY e.nombre;
+
+------------------------------------------
+SELECT COUNT(c.codigo_cliente) FROM empleado e
+JOIN cliente c ON c.codigo_empleado_rep_ventas = e.codigo_empleado;
+
+
+------------------------------------------
 

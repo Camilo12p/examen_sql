@@ -50,7 +50,9 @@ CREATE TABLE cliente(
     codigo_empleado_rep_ventas INT(11),
     limite_credito DECIMAL(15,2),
     
-    CONSTRAINT PK_id_cliente PRIMARY KEY (codigo_cliente)
+    CONSTRAINT PK_id_cliente PRIMARY KEY (codigo_cliente),
+    CONSTRAINT FK_idempleado_cliente FOREIGN KEY (codigo_empleado_rep_ventas) REFERENCES empleado (codigo_empleado)
+
 );
 
 

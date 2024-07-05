@@ -291,3 +291,62 @@ WHERE pg.codigo_cliente IS NULL;
 
 
 
+
+-- CONSULTAS resumen 
+
+1
+SELECT COUNT(e.codigo_empleado) as "Cantidad de empleados" from empleado e;
+
+------------------------------------
+2
+ SELECT COUNT(c.codigo_cliente), c.pais AS "empleado por pais" FROM cliente c GROUP BY c.pais;
+
+
+------------------------------------
+3
+SELECT AVG(p.total) AS pago_promedio FROM pago p WHERE p.fecha_de_pago LIKE "2019%";
+
+---------------------------
+4
+SELECT COUNT(p.codigo_pedido), p.estado as Cantidad_de_pedidos FROM pedido p GROUP BY p.estado 
+ORDER BY COUNT(p.codigo_pedido) DESC;
+
+
+--------------------------------
+5
+
+SELECT MAX(p.precio_venta) AS precio_maximo, MIN(p.precio_venta) AS precioMinimo FROM producto p ;
+
+--------------------------------
+6
+SELECT COUNT(c.codigo_cliente) FROM cliente c WHERE c.ciudad ="Madrid";
+
+
+--------------------------------
+7
+SELECT COUNT(c.codigo_cliente),c.ciudad FROM cliente c 
+GROUP BY (SELECT COUNT(c2.codigo_cliente) FROM cliente c2)
+WHERE c.ciudad LIKE "M%";
+
+
+
+
+------------------------------
+8
+
+SELECT e.nombre, COUNT(c.codigo_cliente) FROM empleado e
+JOIN cliente c ON c.codigo_empleado_rep_ventas = e.codigo_empleado
+GROUP BY e.nombre;
+
+------------------------------------------
+9
+SELECT COUNT(c.codigo_cliente) FROM empleado e
+JOIN cliente c ON c.codigo_empleado_rep_ventas = e.codigo_empleado;
+
+
+------------------------------------------
+
+
+
+
+
